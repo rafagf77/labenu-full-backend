@@ -37,14 +37,14 @@ export class ImageDatabase extends BaseDataBase {
          let i
          for (i=0; i<image.getTags().length; i++) {
             const id = await BaseDataBase.connection.raw(`
-            SELECT id FROM FullStack_tag
-            WHERE name = "${image.getTags()[i]}"
+               SELECT id FROM FullStack_tag
+               WHERE name = "${image.getTags()[i]}"
             `)
             await BaseDataBase.connection.raw(`
-            INSERT INTO FullStack_image_tag (image_id, tag_id)
-            VALUES (
-            '${image.getId()}', 
-            ${id[0][0].id}
+               INSERT INTO FullStack_image_tag (image_id, tag_id)
+               VALUES (
+                  '${image.getId()}', 
+                  ${id[0][0].id}
             )
             `)
          }
@@ -65,6 +65,19 @@ export class ImageDatabase extends BaseDataBase {
       }
    }
 
+   public async addTag(newTag: string[]): Promise<void> {
+      try {
+         let i
+         for (i=0; i<newTag.length; i++) {
+            await BaseDataBase.connection.raw(`
+               INSERT INTO FullStack_tag (name)
+               VALUES ("${newTag[i]}")
+            `);
+         }
+      } catch (error) {
+         throw new Error(error.sqlMessage || error.message)
+      }
+   }
 }
 
 export default new ImageDatabase()
