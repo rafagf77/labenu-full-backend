@@ -59,6 +59,22 @@ export class ImageBusiness {
       }
    }
 
+   public async postTag(
+      newTag: string[],
+      token: string
+   ) {
+      try {
+         this.tokenGenerator.verify(token);
+         
+         await this.imageDatabase.addTag(
+            newTag
+         );
+         return { message: "Tags added" };
+      } catch (error) {
+         throw new CustomError(error.statusCode, error.message)
+      }
+   }
+
 }
 
 export default new ImageBusiness(new IdGenerator(), new ImageDatabase(), new TokenGenerator())
