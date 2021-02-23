@@ -33,24 +33,37 @@ export class ImageDatabase extends BaseDataBase {
             '${image.getCollection()}'
             )`
          );
+         
+         let i
+         for (i=0; i<image.getTags().length; i++) {
+            const id = await BaseDataBase.connection.raw(`
+            SELECT id FROM FullStack_tag
+            WHERE name = "${image.getTags()[i]}"
+            `)
+            await BaseDataBase.connection.raw(`
+            INSERT INTO FullStack_image_tag (image_id, tag_id)
+            VALUES (
+            '${image.getId()}', 
+            ${id[0][0].id}
+            )
+            `)
+         }
+         
       } catch (error) {
          throw new Error(error.sqlMessage || error.message)
       }
    }
 
-
-
-   // public async getUserById(id: string): Promise<User | undefined> {
-   //    try {
-   //       const result = await BaseDataBase.connection.raw(`
-   //          SELECT * from ${this.tableName} WHERE id = '${id}'
-   //       `);
-   //       return this.toModel(result[0][0]);
-   //    } catch (error) {
-   //       throw new Error(error.sqlMessage || error.message)
-   //    }
-   // }
-
+   public async getImage(id: string): Promise<Image | undefined> {
+      try {
+         const result = await BaseDataBase.connection.raw(`
+            SELECT * from ${this.tableName} WHERE id = '${id}'
+         `);
+         return this.toModel(result[0][0]);
+      } catch (error) {
+         throw new Error(error.sqlMessage || error.message)
+      }
+   }
 
 }
 

@@ -31,16 +31,17 @@ export class ImageController {
       }
    }
 
-   // public async getUserById(req: Request, res: Response) {
-   //    try {
-   //       const { id } = req.params
-   //       const result = await userBusiness.getUserById(id);
-   //       res.status(200).send(result);
-   //    } catch (error) {
-   //       const { statusCode, message } = error
-   //       res.status(statusCode || 400).send({ message });
-   //    }
-   // }
+   public async getImageById(req: Request, res: Response) {
+      try {
+         const { id } = req.params
+         const token: string = req.headers.authorization as string
+         const result = await imageBusiness.getImageById(id, token);
+         res.status(200).send(result);
+      } catch (error) {
+         const { statusCode, message } = error
+         res.status(statusCode || 400).send({ message });
+      }
+   }
 }
 
 export default new ImageController()
