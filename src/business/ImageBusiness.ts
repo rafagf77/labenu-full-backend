@@ -41,7 +41,22 @@ export class ImageBusiness {
       } catch (error) {
          throw new CustomError(error.statusCode, error.message)
       }
+   }
 
+   public async getImageById(
+      id: string,
+      token: string
+   ) {
+      try {
+         this.tokenGenerator.verify(token);
+         
+         const result = await this.imageDatabase.getImage(
+            id
+         );
+         return { result };
+      } catch (error) {
+         throw new CustomError(error.statusCode, error.message)
+      }
    }
 
 }

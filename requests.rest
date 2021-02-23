@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ### postImage
 POST http://localhost:3003/images/post
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDEwMTQ2MywiZXhwIjoxNjE0MTAyNjYzfQ.UGq_BMUbaCclMyHPso4-wgB4Sf56LC4Idjq1BasTGkg
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDExMTk5MSwiZXhwIjoxNjE0MTEzMTkxfQ.ehceMw5wdrZwqcXAtrqG9b0y0D-12lwLmQcwExI4LA0
 Content-Type: application/json
 
 {
@@ -28,6 +28,10 @@ Content-Type: application/json
     "author": "Fulano",
     "date": "2021-02-23",
 	"file": "link",
-    "tags": "",
+    "tags": ["pb", "selfie"],
     "collection": "álbum"
 }
+
+### getImageById
+GET http://localhost:3003/images/get/e5b4dad6-1c2b-4912-a571-b3a870c42eae
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDEwMzI5NSwiZXhwIjoxNjE0MTA0NDk1fQ.chkg8MS2_ulpu04GoDfgK4gsSHQOYGijLjUnVLL2LBU
