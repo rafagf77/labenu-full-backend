@@ -40,16 +40,16 @@ export class UserController {
       }
    }
 
-   public async getUserById(req: Request, res: Response) {
-      try {
-         const { id } = req.params
-         const result = await userBusiness.getUserById(id);
-         res.status(200).send(result);
-      } catch (error) {
-         const { statusCode, message } = error
-         res.status(statusCode || 400).send({ message });
-      }
-   }
+   // public async getUserById(req: Request, res: Response) {
+   //    try {
+   //       const { id } = req.params
+   //       const result = await userBusiness.getUserById(id);
+   //       res.status(200).send(result);
+   //    } catch (error) {
+   //       const { statusCode, message } = error
+   //       res.status(statusCode || 400).send({ message });
+   //    }
+   // }
 }
 
 export default new UserController()

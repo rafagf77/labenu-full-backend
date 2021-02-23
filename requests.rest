@@ -3,10 +3,10 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Fulana",
-    "email": "fulana@gmail.com",
-    "nickname": "fu",
-	"password": "123456",
+    "name": "Sicrano",
+    "email": "sicrano@gmail.com",
+    "nickname": "Sic",
+	"password": "123456"
 }
 
 ### login
@@ -18,3 +18,16 @@ Content-Type: application/json
 	"password": "123456"
 }
 
+### postImage
+POST http://localhost:3003/images/post
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDEwMTQ2MywiZXhwIjoxNjE0MTAyNjYzfQ.UGq_BMUbaCclMyHPso4-wgB4Sf56LC4Idjq1BasTGkg
+Content-Type: application/json
+
+{
+    "subtitle": "Foto2",
+    "author": "Fulano",
+    "date": "2021-02-23",
+	"file": "link",
+    "tags": "",
+    "collection": "álbum"
+}

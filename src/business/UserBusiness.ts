@@ -88,23 +88,23 @@ export class UserBusiness {
       }
    }
 
-   public async getUserById(id: string) {
+   // public async getUserById(id: string) {
 
-      try {
-         const user = await this.userDatabase.getUserById(id)
-         if (!user) {
-            throw new CustomError(404, "User not found")
-         }
-         return {
-            id: user.getId(),
-            name: user.getName(),
-            email: user.getEmail(),
-            nickname: user.getNickname()
-         }
-      } catch (error) {
-         throw new CustomError(error.statusCode, error.message)
-      }
-   }
+   //    try {
+   //       const user = await this.userDatabase.getUserById(id)
+   //       if (!user) {
+   //          throw new CustomError(404, "User not found")
+   //       }
+   //       return {
+   //          id: user.getId(),
+   //          name: user.getName(),
+   //          email: user.getEmail(),
+   //          nickname: user.getNickname()
+   //       }
+   //    } catch (error) {
+   //       throw new CustomError(error.statusCode, error.message)
+   //    }
+   // }
 }
 
 export default new UserBusiness(new IdGenerator(), new HashGenerator(), new UserDatabase(), new TokenGenerator())
