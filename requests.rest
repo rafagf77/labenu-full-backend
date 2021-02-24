@@ -20,22 +20,25 @@ Content-Type: application/json
 
 ### postImage
 POST http://localhost:3003/images/post
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDExMTk5MSwiZXhwIjoxNjE0MTEzMTkxfQ.ehceMw5wdrZwqcXAtrqG9b0y0D-12lwLmQcwExI4LA0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDE4NjcwMiwiZXhwIjoxNjE0MTg3OTAyfQ.5zA5H-9NxmELSGOtrOymy85FaamcyO1Xg-cyUIfCtS4
 Content-Type: application/json
 
 {
-    "subtitle": "Foto2",
+    "subtitle": "Foto3",
     "author": "Fulano",
-    "date": "2021-02-23",
 	"file": "link",
-    "tags": ["pb", "selfie"],
+    "tags": ["natureza", "pb"],
     "collection": "álbum"
 }
 
 ### getImageById
-GET http://localhost:3003/images/get/e5b4dad6-1c2b-4912-a571-b3a870c42eae
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDEwMzI5NSwiZXhwIjoxNjE0MTA0NDk1fQ.chkg8MS2_ulpu04GoDfgK4gsSHQOYGijLjUnVLL2LBU
+GET http://localhost:3003/images/get/295506f2-4a95-4663-8724-3a34e45d0d2a
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDE4NjcwMiwiZXhwIjoxNjE0MTg3OTAyfQ.5zA5H-9NxmELSGOtrOymy85FaamcyO1Xg-cyUIfCtS4
 
 ### addTag
 POST http://localhost:3003/images/tag?newTag=férias&newTag=bicicleta&newTag=família
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDEyMDI1NiwiZXhwIjoxNjE0MTIxNDU2fQ.fB5KQYJvgBMH2ZxAOXFQXhIsXHGGIaUxQOux-ieInUE
+
+### delImageById
+DELETE http://localhost:3003/images/del/db7d302e-84e2-4308-a5dc-a20ab60e0f77
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDE5MzE1MSwiZXhwIjoxNjE0MTk0MzUxfQ.nhmjymvyAUOM8qopZUrAX8MqCtOH6fj1beJylTL_ys8
