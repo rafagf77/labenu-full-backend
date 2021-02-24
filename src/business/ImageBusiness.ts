@@ -16,25 +16,24 @@ export class ImageBusiness {
    public async post(
       subtitle: string,
       author: string,
-      date: Date,
       file: string,
       tags: string[],
       collection: string,
       token: string
    ) {
       try {
-         if (!subtitle || !author || !date || !file) {
+         if (!subtitle || !author || !file) {
             throw new CustomError(422, "Missing input");
          }
 
          const id = this.idGenerator.generate();
          this.tokenGenerator.verify(token);
          
-         // var dayjs = require('dayjs')
-         // const createdAt: Date = dayjs(Date.now()).format('YYYY/MM/DD')
+         var dayjs = require('dayjs')
+         const createdAt: Date = dayjs(Date.now()).format('YYYY/MM/DD')
 
          await this.imageDatabase.postImage(
-            new Image(id, subtitle, author, date, file, tags, collection)
+            new Image(id, subtitle, author, createdAt, file, tags, collection)
          );
 
          return { message: "Sucessfull image posted" };
@@ -52,8 +51,37 @@ export class ImageBusiness {
          
          const result = await this.imageDatabase.getImage(
             id
-         );
-         return { result };
+         ) as any
+         
+         let finalResult = [];
+
+         for (let i = 0; i < result.length; i++) {
+            let sameName = false;
+            for (let j = 0; j < i; j++) {
+               if (finalResult[j] && result[i].id === finalResult[j].id) {
+                  finalResult[j].tags.push(
+                        result[i].tag
+                     )
+                     sameName = true;
+                     break;
+               }
+            }
+            if (!sameName) {
+               finalResult.push({
+                     id: result[i].id,
+                     subtitle: result[i].subtitle,
+                     author: result[i].author,
+                     date: result[i].date,
+                     tags: [
+                        result[i].tag
+                     ],
+                     file: result[i].file,
+                     collection: result[i].collection
+               })
+            }
+         }
+         const imageData = finalResult[0]
+         return { imageData };
       } catch (error) {
          throw new CustomError(error.statusCode, error.message)
       }
@@ -75,6 +103,21 @@ export class ImageBusiness {
       }
    }
 
+   public async delImageById(
+      id: string,
+      token: string
+   ) {
+      try {
+         this.tokenGenerator.verify(token);
+         
+         await this.imageDatabase.delImage(
+            id
+         ) as any
+         return { message: "Image deleted" };
+      } catch (error) {
+         throw new CustomError(error.statusCode, error.message)
+      }
+   }
 }
 
 export default new ImageBusiness(new IdGenerator(), new ImageDatabase(), new TokenGenerator())

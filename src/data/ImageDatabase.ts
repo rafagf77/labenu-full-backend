@@ -57,14 +57,18 @@ export class ImageDatabase extends BaseDataBase {
    public async getImage(id: string): Promise<Image | undefined> {
       try {
          const result = await BaseDataBase.connection.raw(`
-            SELECT * from ${this.tableName} WHERE id = '${id}'
+            SELECT fsi.id as id, subtitle, author, date, file, collection, name as tag FROM ${this.tableName} fsi
+            INNER JOIN FullStack_image_tag fsit ON fsi.id = fsit.image_id
+            LEFT JOIN FullStack_tag fst ON fst.id = fsit.tag_id
+            WHERE image_id = '${id}'
          `);
-         return this.toModel(result[0][0]);
+         return (result[0]);
       } catch (error) {
          throw new Error(error.sqlMessage || error.message)
       }
    }
 
+   // SELECT * from ${this.tableName} WHERE id = '${id}'
    public async addTag(newTag: string[]): Promise<void> {
       try {
          let i
@@ -74,6 +78,21 @@ export class ImageDatabase extends BaseDataBase {
                VALUES ("${newTag[i]}")
             `);
          }
+      } catch (error) {
+         throw new Error(error.sqlMessage || error.message)
+      }
+   }
+
+   public async delImage(id: string): Promise<void> {
+      try {
+         await BaseDataBase.connection.raw(`
+            DELETE FROM FullStack_image_tag
+            WHERE image_id = "${id}";
+         `);
+         await BaseDataBase.connection.raw(`
+            DELETE FROM FullStack_image
+            WHERE id = "${id}";
+         `);
       } catch (error) {
          throw new Error(error.sqlMessage || error.message)
       }
