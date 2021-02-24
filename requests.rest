@@ -32,8 +32,8 @@ Content-Type: application/json
 }
 
 ### getImageById
-GET http://localhost:3003/images/get/295506f2-4a95-4663-8724-3a34e45d0d2a
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDE4NjcwMiwiZXhwIjoxNjE0MTg3OTAyfQ.5zA5H-9NxmELSGOtrOymy85FaamcyO1Xg-cyUIfCtS4
+GET http://localhost:3003/images/get/12dab81c-714e-461f-8016-ca9fad7baadb
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDIxMzMxMSwiZXhwIjoxNjE0MjE0NTExfQ.9sAGfU5ToCj7wUc5kj2-6Vu_YyB0F6UXUxtNWE6owBw
 
 ### addTag
 POST http://localhost:3003/images/tag?newTag=férias&newTag=bicicleta&newTag=família

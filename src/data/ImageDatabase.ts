@@ -62,13 +62,20 @@ export class ImageDatabase extends BaseDataBase {
             LEFT JOIN FullStack_tag fst ON fst.id = fsit.tag_id
             WHERE image_id = '${id}'
          `);
-         return (result[0]);
+         if (result[0].length!=0) {
+            return (result[0])
+         } else {
+            const newResult = await BaseDataBase.connection.raw(`
+               SELECT * from ${this.tableName} WHERE id = '${id}'
+            `);
+            return (newResult[0]);
+         }
+
       } catch (error) {
          throw new Error(error.sqlMessage || error.message)
       }
    }
 
-   // SELECT * from ${this.tableName} WHERE id = '${id}'
    public async addTag(newTag: string[]): Promise<void> {
       try {
          let i
