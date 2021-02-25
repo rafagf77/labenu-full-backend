@@ -3,7 +3,6 @@ import { Image } from "../model/Image";
 import { IdGenerator } from "../services/idGenerator";
 import { ImageDatabase } from "../data/ImageDatabase";
 import { TokenGenerator } from "../services/tokenGenerator";
-import { IncomingHttpHeaders } from "http";
 
 export class ImageBusiness {
 
@@ -27,13 +26,13 @@ export class ImageBusiness {
          }
 
          const id = this.idGenerator.generate();
-         this.tokenGenerator.verify(token);
-         
+         const user_id: any = this.tokenGenerator.verify(token) as any;
+
          var dayjs = require('dayjs')
          const createdAt: Date = dayjs(Date.now()).format('YYYY/MM/DD')
 
          await this.imageDatabase.postImage(
-            new Image(id, subtitle, author, createdAt, file, tags, collection)
+            new Image(id, subtitle, author, createdAt, file, tags, collection, user_id.id)
          );
 
          return { message: "Sucessfull image posted" };
@@ -86,6 +85,21 @@ export class ImageBusiness {
          throw new CustomError(error.statusCode, error.message)
       }
    }
+
+   public async getAllImages(
+      token: string
+   ) {
+      try {
+         this.tokenGenerator.verify(token);
+         
+         const result = await this.imageDatabase.getAllImages() as any
+         
+         return { result };
+      } catch (error) {
+         throw new CustomError(error.statusCode, error.message)
+      }
+   }
+
 
    public async postTag(
       newTag: string[],

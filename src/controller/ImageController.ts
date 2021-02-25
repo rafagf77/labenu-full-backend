@@ -42,6 +42,17 @@ export class ImageController {
       }
    }
 
+   public async getAllImages(req: Request, res: Response) {
+      try {
+         const token: string = req.headers.authorization as string
+         const result = await imageBusiness.getAllImages(token);
+         res.status(200).send(result);
+      } catch (error) {
+         const { statusCode, message } = error
+         res.status(statusCode || 400).send({ message });
+      }
+   }
+
    public async postTag(req: Request, res: Response) {
       try {
          const { newTag } = req.query as any

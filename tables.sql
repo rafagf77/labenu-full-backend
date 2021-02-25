@@ -14,7 +14,9 @@ CREATE TABLE IF NOT EXISTS FullStack_image (
 	author VARCHAR(255) NOT NULL,
     date DATE NOT NULL,
 	file VARCHAR(255) NOT NULL,
-	collection VARCHAR(255) NOT NULL
+	collection VARCHAR(255) NOT NULL,
+	user_id VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES FullStack_user(id)
 );
 
 CREATE TABLE IF NOT EXISTS FullStack_tag (

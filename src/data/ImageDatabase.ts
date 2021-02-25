@@ -15,7 +15,8 @@ export class ImageDatabase extends BaseDataBase {
             dbModel.date,
             dbModel.file,
             dbModel.tags,
-            dbModel.collection
+            dbModel.collection,
+            dbModel.user_id
          )
       );
    }
@@ -23,14 +24,15 @@ export class ImageDatabase extends BaseDataBase {
    public async postImage(image: Image): Promise<void> {
       try {
          await BaseDataBase.connection.raw(`
-            INSERT INTO ${this.tableName} (id, subtitle, author, date, file, collection)
+            INSERT INTO ${this.tableName} (id, subtitle, author, date, file, collection, user_id)
             VALUES (
             '${image.getId()}', 
             '${image.getSubtitle()}',
             '${image.getAuthor()}', 
             '${image.getDate()}',
             '${image.getFile()}',
-            '${image.getCollection()}'
+            '${image.getCollection()}',
+            '${image.getUser_id()}'
             )`
          );
          
@@ -70,6 +72,18 @@ export class ImageDatabase extends BaseDataBase {
             `);
             return (newResult[0]);
          }
+
+      } catch (error) {
+         throw new Error(error.sqlMessage || error.message)
+      }
+   }
+
+   public async getAllImages(): Promise<Image[] | undefined> {
+      try {
+         const result = await BaseDataBase.connection.raw(`
+            SELECT * FROM ${this.tableName}
+         `);
+         return (result[0])
 
       } catch (error) {
          throw new Error(error.sqlMessage || error.message)
