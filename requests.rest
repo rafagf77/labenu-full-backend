@@ -14,34 +14,33 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "fulana@gmail.com",
+    "email": "sicrano@gmail.com",
 	"password": "123456"
 }
 
 ### postImage
 POST http://localhost:3003/images/post
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDI3MTMyNSwiZXhwIjoxNjE0MjcyNTI1fQ.QBndBsFr7cWz3KBKbSCjiUdtW6VMlwcmcCQwrBOgJzU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDUzMDUyNiwiZXhwIjoxNjE0NTMxNzI2fQ.l7qSgG1MJ2o5IG7kCOAYGRr4z7LdD2JkGSVRhbnyPco
 Content-Type: application/json
 
 {
     "subtitle": "Foto5",
-    "author": "Fulano",
-	"file": "link",
-    "tags": ["selfie", "pb"],
+	"file": "https://picsum.photos/id/5/200/300",
+    "tags": ["pb"],
     "collection": "álbum"
 }
 
 ### getImageById
-GET http://localhost:3003/images/get/12dab81c-714e-461f-8016-ca9fad7baadb
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDIxMzMxMSwiZXhwIjoxNjE0MjE0NTExfQ.9sAGfU5ToCj7wUc5kj2-6Vu_YyB0F6UXUxtNWE6owBw
+GET http://localhost:3003/images/get/a11d0648-dfcc-44ec-865d-1783341a60bd
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDUzMTgyOCwiZXhwIjoxNjE0NTMzMDI4fQ.qNjhKFvqNrttWwOJQcCxyyMMpf2RMJbMh_mfRUaiuYA
 
 ### getAllImages
 GET http://localhost:3003/images/all
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDI2OTY0NywiZXhwIjoxNjE0MjcwODQ3fQ.aBwcEZ8ABWy6Md23NawBIHutFo5kUhGOLd9DPjJCgRg
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDUzMTgyOCwiZXhwIjoxNjE0NTMzMDI4fQ.qNjhKFvqNrttWwOJQcCxyyMMpf2RMJbMh_mfRUaiuYA
 
 ### addTag
 POST http://localhost:3003/images/tag?newTag=férias&newTag=bicicleta&newTag=família
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDEyMDI1NiwiZXhwIjoxNjE0MTIxNDU2fQ.fB5KQYJvgBMH2ZxAOXFQXhIsXHGGIaUxQOux-ieInUE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDUzMDUyNiwiZXhwIjoxNjE0NTMxNzI2fQ.l7qSgG1MJ2o5IG7kCOAYGRr4z7LdD2JkGSVRhbnyPco
 
 ### delImageById
 DELETE http://localhost:3003/images/del/db7d302e-84e2-4308-a5dc-a20ab60e0f77

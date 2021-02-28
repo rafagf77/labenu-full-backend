@@ -4,8 +4,10 @@ import { imageRouter } from "./router/ImageRouter";
 import { userRouter } from "./router/UserRouter";
 
 const app = express();
+var cors = require('cors')
 
 app.use(express.json());
+app.use(cors())
 
 app.use("/users", userRouter);
 app.use("/images", imageRouter);
