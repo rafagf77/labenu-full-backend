@@ -6,8 +6,7 @@ export class Image {
         private date: Date,
         private file: string,
         private tags: string[],
-        private collection: string,
-        private user_id: string
+        private collection: string
     ){}
 
     public getId(): string {
@@ -37,8 +36,4 @@ export class Image {
     public getCollection(): string {
         return this.collection;
     }
-
-    public getUser_id(): string {
-        return this.user_id;
-    } 
 }

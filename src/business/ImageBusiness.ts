@@ -14,29 +14,29 @@ export class ImageBusiness {
 
    public async post(
       subtitle: string,
-      author: string,
       file: string,
       tags: string[],
       collection: string,
       token: string
    ) {
       try {
-         if (!subtitle || !author || !file) {
+         if (!subtitle || !file) {
             throw new CustomError(422, "Missing input");
          }
 
          const id = this.idGenerator.generate();
-         const user_id: any = this.tokenGenerator.verify(token) as any;
+         const author: any = (this.tokenGenerator.verify(token)).id as any;
 
          var dayjs = require('dayjs')
          const createdAt: Date = dayjs(Date.now()).format('YYYY/MM/DD')
 
          await this.imageDatabase.postImage(
-            new Image(id, subtitle, author, createdAt, file, tags, collection, user_id.id)
+            new Image(id, subtitle, author, createdAt, file, tags, collection)
          );
 
          return { message: "Sucessfull image posted" };
       } catch (error) {
+         console.log(error)
          throw new CustomError(error.statusCode, error.message)
       }
    }
@@ -48,18 +48,18 @@ export class ImageBusiness {
       try {
          this.tokenGenerator.verify(token);
          
-         const result = await this.imageDatabase.getImage(
+         const imageData = await this.imageDatabase.getImage(
             id
          ) as any
          
          let finalResult = [];
 
-         for (let i = 0; i < result.length; i++) {
+         for (let i = 0; i < imageData.length; i++) {
             let sameName = false;
             for (let j = 0; j < i; j++) {
-               if (finalResult[j] && result[i].id === finalResult[j].id) {
+               if (finalResult[j] && imageData[i].id === finalResult[j].id) {
                   finalResult[j].tags.push(
-                        result[i].tag
+                     imageData[i].tag
                      )
                      sameName = true;
                      break;
@@ -67,20 +67,21 @@ export class ImageBusiness {
             }
             if (!sameName) {
                finalResult.push({
-                     id: result[i].id,
-                     subtitle: result[i].subtitle,
-                     author: result[i].author,
-                     date: result[i].date,
+                     id: imageData[i].id,
+                     subtitle: imageData[i].subtitle,
+                     author: imageData[i].author,
+                     date: imageData[i].date,
                      tags: [
-                        result[i].tag
+                        imageData[i].tag
                      ],
-                     file: result[i].file,
-                     collection: result[i].collection
+                     file: imageData[i].file,
+                     collection: imageData[i].collection,
+                     nickname: imageData[i].nickname
                })
             }
          }
-         const imageData = finalResult[0]
-         return { imageData };
+         const result = finalResult[0]
+         return { result };
       } catch (error) {
          throw new CustomError(error.statusCode, error.message)
       }
@@ -92,8 +93,37 @@ export class ImageBusiness {
       try {
          this.tokenGenerator.verify(token);
          
-         const result = await this.imageDatabase.getAllImages() as any
-         
+         const imageData = await this.imageDatabase.getAllImages() as any
+
+         let finalResult = [];
+
+         for (let i = 0; i < imageData.length; i++) {
+            let sameName = false;
+            for (let j = 0; j < i; j++) {
+               if (finalResult[j] && imageData[i].id === finalResult[j].id) {
+                  finalResult[j].tags.push(
+                     imageData[i].tag
+                     )
+                     sameName = true;
+                     break;
+               }
+            }
+            if (!sameName) {
+               finalResult.push({
+                     id: imageData[i].id,
+                     subtitle: imageData[i].subtitle,
+                     author: imageData[i].author,
+                     date: imageData[i].date,
+                     tags: [
+                        imageData[i].tag
+                     ],
+                     file: imageData[i].file,
+                     collection: imageData[i].collection,
+                     nickname: imageData[i].nickname
+               })
+            }
+         }
+         const result = finalResult
          return { result };
       } catch (error) {
          throw new CustomError(error.statusCode, error.message)

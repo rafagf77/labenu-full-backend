@@ -1,9 +1,8 @@
 import BaseDataBase from "./BaseDatabase";
 import { User } from "../model/User";
+import BaseDatabase from "./BaseDatabase";
 
 export class UserDatabase extends BaseDataBase {
-
-   protected tableName: string = "FullStack_user";
 
    private toModel(dbModel?: any): User | undefined {
       return (
@@ -21,7 +20,7 @@ export class UserDatabase extends BaseDataBase {
    public async createUser(user: User): Promise<void> {
       try {
          await BaseDataBase.connection.raw(`
-            INSERT INTO ${this.tableName} (id, name, email, nickname, password)
+            INSERT INTO ${BaseDatabase.USER_TABLE} (id, name, email, nickname, password)
             VALUES (
             '${user.getId()}', 
             '${user.getName()}', 
@@ -38,7 +37,7 @@ export class UserDatabase extends BaseDataBase {
    public async getUserByEmail(email: string): Promise<User | undefined> {
       try {
          const result = await BaseDataBase.connection.raw(`
-            SELECT * from ${this.tableName} WHERE email = '${email}'
+            SELECT * from ${BaseDatabase.USER_TABLE} WHERE email = '${email}'
          `);
          return this.toModel(result[0][0]);
       } catch (error) {
