@@ -47,11 +47,16 @@ export class ImageDatabase extends BaseDataBase {
                `);
             }
 
+            const tagId = await BaseDataBase.connection.raw(`
+               SELECT id FROM ${BaseDatabase.TAG_TABLE}
+               WHERE name = "${image.getTags()[i]}"
+            `)
+
             await BaseDataBase.connection.raw(`
                INSERT INTO ${BaseDatabase.RELATION_TABLE} (image_id, tag_id)
                VALUES (
                   '${image.getId()}', 
-                  ${id[0][0].id}
+                  ${tagId[0][0].id}
                )
             `)
          }
@@ -74,7 +79,9 @@ export class ImageDatabase extends BaseDataBase {
             return (result[0])
          } else {
             const newResult = await BaseDataBase.connection.raw(`
-               SELECT * from ${BaseDatabase.IMAGE_TABLE} WHERE id = '${id}'
+               SELECT fsi.id as id, subtitle, author, date, file, collection, nickname from ${BaseDatabase.IMAGE_TABLE} fsi
+               LEFT JOIN ${BaseDatabase.USER_TABLE} fsu ON fsu.id = fsi.author
+               WHERE fsi.id = '${id}'
             `);
             return (newResult[0]);
          }
