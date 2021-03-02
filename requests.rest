@@ -20,23 +20,23 @@ Content-Type: application/json
 
 ### postImage
 POST http://localhost:3003/images/post
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDUzMDUyNiwiZXhwIjoxNjE0NTMxNzI2fQ.l7qSgG1MJ2o5IG7kCOAYGRr4z7LdD2JkGSVRhbnyPco
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDU0MTExOSwiZXhwIjoxNjE0NTQyMzE5fQ.w5gkQDTrebzZahsw-ZU4ArV3fgK3JIOboLtAMGNYQPs
 Content-Type: application/json
 
 {
-    "subtitle": "Foto5",
-	"file": "https://picsum.photos/id/5/200/300",
-    "tags": ["pb"],
+    "subtitle": "Foto8",
+	"file": "https://picsum.photos/id/8/200/300",
+    "tags": ["selfie", "pb", "natureza"],
     "collection": "álbum"
 }
 
 ### getImageById
-GET http://localhost:3003/images/get/a11d0648-dfcc-44ec-865d-1783341a60bd
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDUzMTgyOCwiZXhwIjoxNjE0NTMzMDI4fQ.qNjhKFvqNrttWwOJQcCxyyMMpf2RMJbMh_mfRUaiuYA
+GET http://localhost:3003/images/get/0d839935-9fee-4c69-874a-086aee3346cf
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDY5NzI5MSwiZXhwIjoxNjE0Njk4NDkxfQ.bl0UbkTzewNmYv0rBSktaCl3eSPg79UTXvGP0mDqTiE
 
 ### getAllImages
 GET http://localhost:3003/images/all
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDUzMTgyOCwiZXhwIjoxNjE0NTMzMDI4fQ.qNjhKFvqNrttWwOJQcCxyyMMpf2RMJbMh_mfRUaiuYA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDY5NjA0NCwiZXhwIjoxNjE0Njk3MjQ0fQ.A0JuXkiMWksaiplII1gUNqwreZRDT_-FdoE_cLjxKCw
 
 ### addTag
 POST http://localhost:3003/images/tag?newTag=férias&newTag=bicicleta&newTag=família
