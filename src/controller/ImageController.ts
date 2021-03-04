@@ -13,13 +13,13 @@ export class ImageController {
 
    public async post(req: Request, res: Response) {
       try {
-         const { subtitle, file, tags, collection } = req.body
+         const { subtitle, file, tags, collections } = req.body
          const token: string = req.headers.authorization as string
          const result = await imageBusiness.post(
             subtitle,
             file,
             tags,
-            collection,
+            collections,
             token
          );
          res.status(200).send(result);

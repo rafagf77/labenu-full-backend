@@ -33,7 +33,7 @@ export class MySqlSetup extends BaseDatabase{
         `)
 
         await BaseDatabase.connection.raw(`
-            CREATE TABLE IF NOT EXISTS ${BaseDatabase.RELATION_TABLE} (
+            CREATE TABLE IF NOT EXISTS ${BaseDatabase.IMAGE_TAG_TABLE} (
                 image_id VARCHAR(255) NOT NULL,
                 tag_id INT NOT NULL,
                 FOREIGN KEY (image_id) REFERENCES ${BaseDatabase.IMAGE_TABLE}(id),

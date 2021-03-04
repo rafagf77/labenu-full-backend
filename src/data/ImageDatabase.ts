@@ -14,7 +14,7 @@ export class ImageDatabase extends BaseDataBase {
             dbModel.date,
             dbModel.file,
             dbModel.tags,
-            dbModel.collection
+            dbModel.collections
          )
       );
    }
@@ -22,14 +22,13 @@ export class ImageDatabase extends BaseDataBase {
    public async postImage(image: Image): Promise<void> {
       try {
          await BaseDataBase.connection.raw(`
-            INSERT INTO ${BaseDatabase.IMAGE_TABLE} (id, subtitle, author, date, file, collection)
+            INSERT INTO ${BaseDatabase.IMAGE_TABLE} (id, subtitle, author, date, file)
             VALUES (
                '${image.getId()}', 
                '${image.getSubtitle()}',
                '${image.getAuthor()}', 
                '${image.getDate()}',
-               '${image.getFile()}',
-               '${image.getCollection()}'
+               '${image.getFile()}'
             )`
          );
          
@@ -53,7 +52,7 @@ export class ImageDatabase extends BaseDataBase {
             `)
 
             await BaseDataBase.connection.raw(`
-               INSERT INTO ${BaseDatabase.RELATION_TABLE} (image_id, tag_id)
+               INSERT INTO ${BaseDatabase.IMAGE_TAG_TABLE} (image_id, tag_id)
                VALUES (
                   '${image.getId()}', 
                   ${tagId[0][0].id}
@@ -69,8 +68,8 @@ export class ImageDatabase extends BaseDataBase {
    public async getImage(id: string): Promise<Image | undefined> {
       try {
          const result = await BaseDataBase.connection.raw(`
-            SELECT fsi.id as id, subtitle, author, date, file, collection, nickname, fst.name as tag FROM ${BaseDatabase.IMAGE_TABLE} fsi
-            INNER JOIN ${BaseDatabase.RELATION_TABLE} fsit ON fsi.id = fsit.image_id
+            SELECT fsi.id as id, subtitle, author, date, file, nickname, fst.name as tag FROM ${BaseDatabase.IMAGE_TABLE} fsi
+            INNER JOIN ${BaseDatabase.IMAGE_TAG_TABLE} fsit ON fsi.id = fsit.image_id
             LEFT JOIN ${BaseDatabase.TAG_TABLE} fst ON fst.id = fsit.tag_id
             LEFT JOIN ${BaseDatabase.USER_TABLE} fsu ON fsu.id = fsi.author
             WHERE image_id = '${id}'
@@ -79,7 +78,7 @@ export class ImageDatabase extends BaseDataBase {
             return (result[0])
          } else {
             const newResult = await BaseDataBase.connection.raw(`
-               SELECT fsi.id as id, subtitle, author, date, file, collection, nickname from ${BaseDatabase.IMAGE_TABLE} fsi
+               SELECT fsi.id as id, subtitle, author, date, file, nickname from ${BaseDatabase.IMAGE_TABLE} fsi
                LEFT JOIN ${BaseDatabase.USER_TABLE} fsu ON fsu.id = fsi.author
                WHERE fsi.id = '${id}'
             `);
@@ -94,9 +93,9 @@ export class ImageDatabase extends BaseDataBase {
    public async getAllImages(): Promise<Image[] | undefined> {
       try {
          const result = await BaseDataBase.connection.raw(`
-         SELECT fsi.id as id, subtitle, author, date, file, collection, nickname, fst.name as tag FROM ${BaseDatabase.IMAGE_TABLE} fsi
+         SELECT fsi.id as id, subtitle, author, date, file, nickname, fst.name as tag FROM ${BaseDatabase.IMAGE_TABLE} fsi
 	         LEFT JOIN ${BaseDatabase.USER_TABLE} fsu ON fsu.id = fsi.author
-            LEFT JOIN ${BaseDatabase.RELATION_TABLE} fsit ON fsi.id = fsit.image_id
+            LEFT JOIN ${BaseDatabase.IMAGE_TAG_TABLE} fsit ON fsi.id = fsit.image_id
             LEFT JOIN ${BaseDatabase.TAG_TABLE} fst ON fst.id = fsit.tag_id;
          `);
          return (result[0])
@@ -123,7 +122,7 @@ export class ImageDatabase extends BaseDataBase {
    public async delImage(id: string): Promise<void> {
       try {
          await BaseDataBase.connection.raw(`
-            DELETE FROM ${BaseDatabase.RELATION_TABLE}
+            DELETE FROM ${BaseDatabase.IMAGE_TAG_TABLE}
             WHERE image_id = "${id}";
          `);
          await BaseDataBase.connection.raw(`
