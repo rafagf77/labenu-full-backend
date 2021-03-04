@@ -20,14 +20,14 @@ Content-Type: application/json
 
 ### postImage
 POST http://localhost:3003/images/post
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDU0MTExOSwiZXhwIjoxNjE0NTQyMzE5fQ.w5gkQDTrebzZahsw-ZU4ArV3fgK3JIOboLtAMGNYQPs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDg3NTA1NiwiZXhwIjoxNjE0ODc2MjU2fQ.k2MXquMQEtkZTlXl1tzR7wzfbrmBw86gvhcFQ7UB880
 Content-Type: application/json
 
 {
-    "subtitle": "Foto8",
+    "subtitle": "Foto100",
 	"file": "https://picsum.photos/id/8/200/300",
     "tags": ["selfie", "pb", "natureza"],
-    "collection": "álbum"
+    "collection": ""
 }
 
 ### getImageById
@@ -36,7 +36,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQt
 
 ### getAllImages
 GET http://localhost:3003/images/all
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDY5NjA0NCwiZXhwIjoxNjE0Njk3MjQ0fQ.A0JuXkiMWksaiplII1gUNqwreZRDT_-FdoE_cLjxKCw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDg3NTA1NiwiZXhwIjoxNjE0ODc2MjU2fQ.k2MXquMQEtkZTlXl1tzR7wzfbrmBw86gvhcFQ7UB880
 
 ### addTag
 POST http://localhost:3003/images/tag?newTag=férias&newTag=bicicleta&newTag=família
@@ -45,3 +45,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQt
 ### delImageById
 DELETE http://localhost:3003/images/del/db7d302e-84e2-4308-a5dc-a20ab60e0f77
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDE5MzE1MSwiZXhwIjoxNjE0MTk0MzUxfQ.nhmjymvyAUOM8qopZUrAX8MqCtOH6fj1beJylTL_ys8
+
+### postCollection
+POST http://localhost:3003/collections/post
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDg5MTI3MywiZXhwIjoxNjE0ODkyNDczfQ.NdSBq2_kuXVt4fuIIVcckPAzVD2yd5L3iRxQ2IuRGyI
+Content-Type: application/json
+
+{
+    "title": "Álbum 03",
+    "subtitle": "Fotos diversas",
+	"image": ""
+}
+
+### getAllImages
+GET http://localhost:3003/collections/get/all
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDg5MjQ4OCwiZXhwIjoxNjE0ODkzNjg4fQ.f9zqZ-7VYCNM7_IurcdRLVRwPvrESSf53t5F2bTBFg0

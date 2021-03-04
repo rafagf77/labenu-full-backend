@@ -1,5 +1,6 @@
 import express from "express";
 import {AddressInfo} from "net";
+import { collectionRouter } from "./router/CollectionRouter";
 import { imageRouter } from "./router/ImageRouter";
 import { userRouter } from "./router/UserRouter";
 
@@ -11,6 +12,7 @@ app.use(cors())
 
 app.use("/users", userRouter);
 app.use("/images", imageRouter);
+app.use("/collections", collectionRouter);
 
 const server = app.listen(3003, () => {
   if (server) {

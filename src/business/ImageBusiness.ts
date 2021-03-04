@@ -16,7 +16,7 @@ export class ImageBusiness {
       subtitle: string,
       file: string,
       tags: string[],
-      collection: string,
+      collections: string[],
       token: string
    ) {
       try {
@@ -28,10 +28,10 @@ export class ImageBusiness {
          const author: any = (this.tokenGenerator.verify(token)).id as any;
 
          var dayjs = require('dayjs')
-         const createdAt: Date = dayjs(Date.now()).format('YYYY/MM/DD')
+         const createdAt: Date = dayjs(Date.now()).format('YYYY-MM-DD HH:mm:ss')
 
          await this.imageDatabase.postImage(
-            new Image(id, subtitle, author, createdAt, file, tags, collection)
+            new Image(id, subtitle, author, createdAt, file, tags, collections)
          );
 
          return { message: "Sucessfull image posted" };

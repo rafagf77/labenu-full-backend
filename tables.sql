@@ -12,9 +12,8 @@ CREATE TABLE IF NOT EXISTS FullStack_image (
 	id VARCHAR(255) PRIMARY KEY,
 	subtitle VARCHAR(255) NOT NULL,
 	author VARCHAR(255) NOT NULL,
-    date DATE NOT NULL,
+    date DATETIME NOT NULL,
 	file VARCHAR(255) NOT NULL,
-	collection VARCHAR(255),
     FOREIGN KEY (author) REFERENCES FullStack_user(id)
 );
 
@@ -30,3 +29,18 @@ CREATE TABLE IF NOT EXISTS FullStack_image_tag (
     FOREIGN KEY (tag_id) REFERENCES FullStack_tag(id)
 );
 
+CREATE TABLE IF NOT EXISTS FullStack_collection (
+	id VARCHAR(255) PRIMARY KEY,
+	title VARCHAR(255) NOT NULL,
+    subtitle VARCHAR(255) NOT NULL,
+    image VARCHAR(255),
+    author VARCHAR(255) NOT NULL,
+    FOREIGN KEY (author) REFERENCES FullStack_user(id)
+);
+
+CREATE TABLE IF NOT EXISTS FullStack_image_collection (
+	image_id VARCHAR(255) NOT NULL,
+	collection_id VARCHAR(255) NOT NULL,
+    FOREIGN KEY (image_id) REFERENCES FullStack_image(id),
+    FOREIGN KEY (collection_id) REFERENCES FullStack_collection(id)
+);
