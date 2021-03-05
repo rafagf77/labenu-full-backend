@@ -4,7 +4,6 @@ export class Collection {
         private title: string,
         private subtitle: string,
         private date: Date,
-        private image: string,
         private author: string
     ){}
 
@@ -22,10 +21,6 @@ export class Collection {
 
     public getDate(): Date {
         return this.date;
-    }  
-
-    public getImage(): string {
-        return this.image;
     }  
 
     public getAuthor(): string {

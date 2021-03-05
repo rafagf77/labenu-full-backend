@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS FullStack_collection (
 	id VARCHAR(255) PRIMARY KEY,
 	title VARCHAR(255) NOT NULL,
     subtitle VARCHAR(255) NOT NULL,
-    image VARCHAR(255),
     author VARCHAR(255) NOT NULL,
     FOREIGN KEY (author) REFERENCES FullStack_user(id)
 );

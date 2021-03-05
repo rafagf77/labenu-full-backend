@@ -36,7 +36,6 @@ export class ImageBusiness {
 
          return { message: "Sucessfull image posted" };
       } catch (error) {
-         console.log(error)
          throw new CustomError(error.statusCode, error.message)
       }
    }

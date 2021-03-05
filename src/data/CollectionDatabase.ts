@@ -22,30 +22,25 @@ export class CollectionDatabase extends BaseDataBase {
       }
    }
 
-   // public async getCollection(id: string): Promise<Image | undefined> {
-   //    try {
-   //       const result = await BaseDataBase.connection.raw(`
-   //          SELECT fsi.id as id, subtitle, author, date, file, nickname, fst.name as tag FROM ${BaseDatabase.IMAGE_TABLE} fsi
-   //          INNER JOIN ${BaseDatabase.IMAGE_TAG_TABLE} fsit ON fsi.id = fsit.image_id
-   //          LEFT JOIN ${BaseDatabase.TAG_TABLE} fst ON fst.id = fsit.tag_id
-   //          LEFT JOIN ${BaseDatabase.USER_TABLE} fsu ON fsu.id = fsi.author
-   //          WHERE image_id = '${id}'
-   //       `);
-   //       if (result[0].length!=0) {
-   //          return (result[0])
-   //       } else {
-   //          const newResult = await BaseDataBase.connection.raw(`
-   //             SELECT fsi.id as id, subtitle, author, date, file, nickname from ${BaseDatabase.IMAGE_TABLE} fsi
-   //             LEFT JOIN ${BaseDatabase.USER_TABLE} fsu ON fsu.id = fsi.author
-   //             WHERE fsi.id = '${id}'
-   //          `);
-   //          return (newResult[0]);
-   //       }
+   public async getCollection(id: string): Promise<any | undefined> {
+      try {
+         const result = await BaseDataBase.connection.raw(`
+            SELECT id, subtitle, date, file FROM ${BaseDatabase.IMAGE_TABLE} fsi
+            LEFT JOIN ${BaseDatabase.IMAGE_COL_TABLE} fsic ON fsi.id = fsic.image_id
+            WHERE fsic.collection_id = "${id}";
+         `);
 
-   //    } catch (error) {
-   //       throw new Error(error.sqlMessage || error.message)
-   //    }
-   // }
+         const collection = await BaseDataBase.connection.raw(`
+            SELECT * FROM ${BaseDatabase.COLLECTION_TABLE}
+            WHERE id = "${id}";
+         `);
+
+         return ([collection[0], result[0]])
+
+      } catch (error) {
+         throw new Error(error.sqlMessage || error.message)
+      }
+   }
 
    public async getAllCollections(author: string): Promise<Collection | undefined> {
       try {

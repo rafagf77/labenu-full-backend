@@ -48,15 +48,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1Yzct
 
 ### postCollection
 POST http://localhost:3003/collections/post
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDg5MTI3MywiZXhwIjoxNjE0ODkyNDczfQ.NdSBq2_kuXVt4fuIIVcckPAzVD2yd5L3iRxQ2IuRGyI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDk1MjUwNiwiZXhwIjoxNjE0OTUzNzA2fQ.StgQmZFEK8sF9zf8KZZOqvlr5KTKONXmD_yxVOYLri4
 Content-Type: application/json
 
 {
-    "title": "Álbum 03",
-    "subtitle": "Fotos diversas",
-	"image": ""
+    "title": "Álbum 04",
+    "subtitle": "Fotos diversas"
 }
 
-### getAllImages
-GET http://localhost:3003/collections/get/all
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDg5MjQ4OCwiZXhwIjoxNjE0ODkzNjg4fQ.f9zqZ-7VYCNM7_IurcdRLVRwPvrESSf53t5F2bTBFg0
+### getAllCollections
+GET http://localhost:3003/collections/all
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDk2NTQ1MiwiZXhwIjoxNjE0OTY2NjUyfQ.Qmak5JQg5TwlC8uiiNJs9-myh6kfOXwn6w9iHQUTY2s
+
+### getCoLLectionById
+GET http://localhost:3003/collections/get/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDk2NzQxMSwiZXhwIjoxNjE0OTY4NjExfQ.LIJqVJloa0H5MrewdANUQ5Bhgcbhb9sAGlsJ5A5GjKwgit
