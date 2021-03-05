@@ -15,7 +15,6 @@ export class CollectionBusiness {
    public async post(
       title: string,
       subtitle: string,
-      image: string,
       token: string
    ) {
       try {
@@ -28,71 +27,41 @@ export class CollectionBusiness {
 
          var dayjs = require('dayjs')
          const createdAt: Date = dayjs(Date.now()).format('YYYY-MM-DD HH:mm:ss')
-         console.log(createdAt)
 
          await this.collectionDatabase.postCollection(
-            new Collection(id, title, subtitle, createdAt, image, author)
+            new Collection(id, title, subtitle, createdAt, author)
          );
 
          return { message: "Sucessfull collection posted" };
       } catch (error) {
-         console.log(error)
          throw new CustomError(error.statusCode, error.message)
       }
    }
 
-   // public async getCollectionById(
-   //    id: string,
-   //    token: string
-   // ) {
-   //    try {
-   //       this.tokenGenerator.verify(token);
+   public async getCollectionById(
+      id: string,
+      token: string
+   ) {
+      try {
+         this.tokenGenerator.verify(token);
          
-   //       const imageData = await this.collectionDatabase.getCollection(
-   //          id
-   //       ) as any
+         const result = await this.collectionDatabase.getCollection(
+            id
+         ) as any
          
-   //       let finalResult = [];
-
-   //       for (let i = 0; i < imageData.length; i++) {
-   //          let sameName = false;
-   //          for (let j = 0; j < i; j++) {
-   //             if (finalResult[j] && imageData[i].id === finalResult[j].id) {
-   //                finalResult[j].tags.push(
-   //                   imageData[i].tag
-   //                   )
-   //                   sameName = true;
-   //                   break;
-   //             }
-   //          }
-   //          if (!sameName) {
-   //             finalResult.push({
-   //                   id: imageData[i].id,
-   //                   subtitle: imageData[i].subtitle,
-   //                   author: imageData[i].author,
-   //                   date: imageData[i].date,
-   //                   tags: [
-   //                      imageData[i].tag
-   //                   ],
-   //                   file: imageData[i].file,
-   //                   collection: imageData[i].collection,
-   //                   nickname: imageData[i].nickname
-   //             })
-   //          }
-   //       }
-   //       const result = finalResult[0]
-   //       return { result };
-   //    } catch (error) {
-   //       throw new CustomError(error.statusCode, error.message)
-   //    }
-   // }
+         return { result } ;
+      } catch (error) {
+         throw new CustomError(error.statusCode, error.message)
+      }
+   }
 
    public async getAllCollections(
       token: string
    ) {
       try {
-         const author = (this.tokenGenerator.verify(token)).id;
-         
+         const author = (this.tokenGenerator.verify(token)).id as any;
+         // console.log(author)
+         // console.log("token",token)
          const result = await this.collectionDatabase.getAllCollections(author) as any
 
          return { result };

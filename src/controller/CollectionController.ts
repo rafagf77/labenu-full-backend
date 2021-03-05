@@ -13,12 +13,11 @@ export class CollectionController {
 
    public async post(req: Request, res: Response) {
       try {
-         const { title, subtitle, image } = req.body
+         const { title, subtitle } = req.body
          const token: string = req.headers.authorization as string
          const result = await collectionBusiness.post(
             title,
             subtitle,
-            image,
             token
          );
          res.status(200).send(result);
@@ -28,17 +27,17 @@ export class CollectionController {
       }
    }
 
-   // public async getCollectionById(req: Request, res: Response) {
-   //    try {
-   //       const { id } = req.params
-   //       const token: string = req.headers.authorization as string
-   //       const result = await collectionBusiness.getCollectionById(id, token);
-   //       res.status(200).send(result);
-   //    } catch (error) {
-   //       const { statusCode, message } = error
-   //       res.status(statusCode || 400).send({ message });
-   //    }
-   // }
+   public async getCollectionById(req: Request, res: Response) {
+      try {
+         const { id } = req.params
+         const token: string = req.headers.authorization as string
+         const result = await collectionBusiness.getCollectionById(id, token);
+         res.status(200).send(result);
+      } catch (error) {
+         const { statusCode, message } = error
+         res.status(statusCode || 400).send({ message });
+      }
+   }
 
    public async getAllCollections(req: Request, res: Response) {
       try {
