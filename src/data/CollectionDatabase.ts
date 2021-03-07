@@ -55,34 +55,20 @@ export class CollectionDatabase extends BaseDataBase {
       }
    }
 
-   // public async addTag(newTag: string[]): Promise<void> {
-   //    try {
-   //       let i
-   //       for (i=0; i<newTag.length; i++) {
-   //          await BaseDataBase.connection.raw(`
-   //             INSERT INTO ${BaseDatabase.TAG_TABLE} (name)
-   //             VALUES ("${newTag[i]}")
-   //          `);
-   //       }
-   //    } catch (error) {
-   //       throw new Error(error.sqlMessage || error.message)
-   //    }
-   // }
-
-   // public async delImage(id: string): Promise<void> {
-   //    try {
-   //       await BaseDataBase.connection.raw(`
-   //          DELETE FROM ${BaseDatabase.IMAGE_TAG_TABLE}
-   //          WHERE image_id = "${id}";
-   //       `);
-   //       await BaseDataBase.connection.raw(`
-   //          DELETE FROM ${BaseDatabase.IMAGE_TABLE}
-   //          WHERE id = "${id}";
-   //       `);
-   //    } catch (error) {
-   //       throw new Error(error.sqlMessage || error.message)
-   //    }
-   // }
+   public async delCollection(id: string): Promise<void> {
+      try {
+         await BaseDataBase.connection.raw(`
+            DELETE FROM ${BaseDatabase.IMAGE_COL_TABLE}
+            WHERE image_id = "${id}";
+         `);
+         await BaseDataBase.connection.raw(`
+            DELETE FROM ${BaseDatabase.COLLECTION_TABLE}
+            WHERE id = "${id}";
+         `);
+      } catch (error) {
+         throw new Error(error.sqlMessage || error.message)
+      }
+   }
 }
 
 export default new CollectionDatabase()

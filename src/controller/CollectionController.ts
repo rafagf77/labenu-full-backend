@@ -50,29 +50,17 @@ export class CollectionController {
       }
    }
 
-   // public async postTag(req: Request, res: Response) {
-   //    try {
-   //       const { newTag } = req.query as any
-   //       const token: string = req.headers.authorization as string
-   //       const result = await imageBusiness.postTag(newTag, token);
-   //       res.status(200).send(result);
-   //    } catch (error) {
-   //       const { statusCode, message } = error
-   //       res.status(statusCode || 400).send({ message });
-   //    }
-   // }
-
-   // public async delImageById(req: Request, res: Response) {
-   //    try {
-   //       const { id } = req.params
-   //       const token: string = req.headers.authorization as string
-   //       const result = await imageBusiness.delImageById(id, token);
-   //       res.status(200).send(result);
-   //    } catch (error) {
-   //       const { statusCode, message } = error
-   //       res.status(statusCode || 400).send({ message });
-   //    }
-   // }
+   public async delCollectionById(req: Request, res: Response) {
+      try {
+         const { id } = req.params
+         const token: string = req.headers.authorization as string
+         const result = await collectionBusiness.delCollectionById(id, token);
+         res.status(200).send(result);
+      } catch (error) {
+         const { statusCode, message } = error
+         res.status(statusCode || 400).send({ message });
+      }
+   }
 
 }
 
