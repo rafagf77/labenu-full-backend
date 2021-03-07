@@ -28,7 +28,7 @@ export class MySqlSetup extends BaseDatabase{
         await BaseDatabase.connection.raw(`
             CREATE TABLE IF NOT EXISTS ${BaseDatabase.TAG_TABLE} (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(255) NOT NULL
+                name VARCHAR(255) NOT NULL UNIQUE
             )
         `)
 
@@ -44,7 +44,7 @@ export class MySqlSetup extends BaseDatabase{
         await BaseDatabase.connection.raw(`
             CREATE TABLE IF NOT EXISTS FullStack_collection (
                 id VARCHAR(255) PRIMARY KEY,
-                title VARCHAR(255) NOT NULL,
+                title VARCHAR(255) NOT NULL UNIQUE,
                 subtitle VARCHAR(255) NOT NULL,
                 author VARCHAR(255) NOT NULL,
                 FOREIGN KEY (author) REFERENCES FullStack_user(id)

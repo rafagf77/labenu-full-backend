@@ -76,6 +76,33 @@ export class ImageController {
       }
    }
 
+   public async addToCollection(req: Request, res: Response) {
+      try {
+         const { collection } = req.query as any
+         const image_id = req.params.id as any
+         const token: string = req.headers.authorization as string
+         const result = await imageBusiness.addToCollection(image_id, collection, token);
+         res.status(200).send(result);
+      } catch (error) {
+         const { statusCode, message } = error
+         res.status(statusCode || 400).send({ message });
+      }
+   }
+
+   public async removeFromCollection(req: Request, res: Response) {
+      try {
+         const { collection } = req.query as any
+         const image_id = req.params.id as any
+         const token: string = req.headers.authorization as string
+         const result = await imageBusiness.removeFromCollection(image_id, collection, token);
+         res.status(200).send(result);
+      } catch (error) {
+         const { statusCode, message } = error
+         res.status(statusCode || 400).send({ message });
+      }
+   }
+
+
 }
 
 export default new ImageController()

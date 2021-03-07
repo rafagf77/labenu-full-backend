@@ -14,7 +14,7 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "sicrano@gmail.com",
+    "email": "rafael@labenu.com",
 	"password": "123456"
 }
 
@@ -31,12 +31,12 @@ Content-Type: application/json
 }
 
 ### getImageById
-GET http://localhost:3003/images/get/0d839935-9fee-4c69-874a-086aee3346cf
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDY5NzI5MSwiZXhwIjoxNjE0Njk4NDkxfQ.bl0UbkTzewNmYv0rBSktaCl3eSPg79UTXvGP0mDqTiE
+GET http://localhost:3003/images/get/09903736-96d9-41c0-9ff5-2c92fdc1e49c
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTE1MTY2OCwiZXhwIjoxNjE1MTUyODY4fQ.MfjedIuqYbIw5kFar-jJ8pkjlGNtbsMexgoIxx0Q2FM
 
 ### getAllImages
 GET http://localhost:3003/images/all
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDg3NTA1NiwiZXhwIjoxNjE0ODc2MjU2fQ.k2MXquMQEtkZTlXl1tzR7wzfbrmBw86gvhcFQ7UB880
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNTEzODQyNiwiZXhwIjoxNjE1MTM5NjI2fQ.gLXhYgD3tI2j8i_RhLwoHa8JLSTtEsIf0GPeeUXCC7A
 
 ### addTag
 POST http://localhost:3003/images/tag?newTag=férias&newTag=bicicleta&newTag=família
@@ -63,3 +63,19 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQt
 ### getCoLLectionById
 GET http://localhost:3003/collections/get/2
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDk2NzQxMSwiZXhwIjoxNjE0OTY4NjExfQ.LIJqVJloa0H5MrewdANUQ5Bhgcbhb9sAGlsJ5A5GjKwgit
+
+### delCollectionById
+DELETE http://localhost:3003/collections/del/ead72a32-e4e6-4b31-8adc-e4df2e53eeb0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNTE0MjM4MywiZXhwIjoxNjE1MTQzNTgzfQ.vSU8N6bCz84cPUuY9ZPg9hHTmUTGge0P68sYwbxj4nA
+
+### addToCollection
+POST http://localhost:3003/images/collection/1919d3e4-ca95-460d-8c53-dc79f0c6dc5f
+    ?collection=2
+    &collection=3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTE0NDU3OSwiZXhwIjoxNjE1MTQ1Nzc5fQ.XptBMA7Oezy1myBURm1OYEQszLtD3Op7cPrVjq0zjcY
+
+### removeFromCollection
+DELETE http://localhost:3003/images/collection/1919d3e4-ca95-460d-8c53-dc79f0c6dc5f
+    ?collection=2
+    &collection=3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTE0NTg2NiwiZXhwIjoxNjE1MTQ3MDY2fQ.LBYHqISZWfHw7i_vwLaDUw1wZt_8OFTPR2SOxz7uNag

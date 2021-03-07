@@ -70,38 +70,22 @@ export class CollectionBusiness {
       }
    }
 
-
-   // public async postTag(
-   //    newTag: string[],
-   //    token: string
-   // ) {
-   //    try {
-   //       this.tokenGenerator.verify(token);
+   public async delCollectionById(
+      id: string,
+      token: string
+   ) {
+      try {
+         this.tokenGenerator.verify(token);
          
-   //       await this.collectionDatabase.addTag(
-   //          newTag
-   //       );
-   //       return { message: "Tags added" };
-   //    } catch (error) {
-   //       throw new CustomError(error.statusCode, error.message)
-   //    }
-   // }
+         await this.collectionDatabase.delCollection(
+            id
+         ) as any
+         return { message: "Collection deleted" };
+      } catch (error) {
+         throw new CustomError(error.statusCode, error.message)
+      }
+   }
 
-   // public async delImageById(
-   //    id: string,
-   //    token: string
-   // ) {
-   //    try {
-   //       this.tokenGenerator.verify(token);
-         
-   //       await this.collectionDatabase.delImage(
-   //          id
-   //       ) as any
-   //       return { message: "Image deleted" };
-   //    } catch (error) {
-   //       throw new CustomError(error.statusCode, error.message)
-   //    }
-   // }
 }
 
 export default new CollectionBusiness(new IdGenerator(), new CollectionDatabase(), new TokenGenerator())
