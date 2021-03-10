@@ -6,7 +6,7 @@ export const imageRouter = express.Router();
 imageRouter.post("/post", imageController.post);
 imageRouter.get("/get/:id", imageController.getImageById);
 imageRouter.get("/all", imageController.getAllImages);
-imageRouter.post("/tag", imageController.postTag);
 imageRouter.delete("/del/:id", imageController.delImageById);
 imageRouter.post("/collection/:id", imageController.addToCollection);
 imageRouter.delete("/collection/:id", imageController.removeFromCollection);
+imageRouter.get("/tag/:id", imageController.getImagesByTagId);

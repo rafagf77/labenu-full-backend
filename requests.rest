@@ -20,31 +20,27 @@ Content-Type: application/json
 
 ### postImage
 POST http://localhost:3003/images/post
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDg3NTA1NiwiZXhwIjoxNjE0ODc2MjU2fQ.k2MXquMQEtkZTlXl1tzR7wzfbrmBw86gvhcFQ7UB880
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTMxNTQzOCwiZXhwIjoxNjE1MzE2NjM4fQ.gaSTOB5uY1ArLSoU2SBh01_ruIh-mbUR0MW5oyToxcE
 Content-Type: application/json
 
 {
-    "subtitle": "Foto100",
+    "subtitle": "Foto outra",
 	"file": "https://picsum.photos/id/8/200/300",
     "tags": ["selfie", "pb", "natureza"],
-    "collection": ""
+    "collections": ["1", "2", "3"]
 }
 
 ### getImageById
 GET http://localhost:3003/images/get/09903736-96d9-41c0-9ff5-2c92fdc1e49c
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTE1MTY2OCwiZXhwIjoxNjE1MTUyODY4fQ.MfjedIuqYbIw5kFar-jJ8pkjlGNtbsMexgoIxx0Q2FM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTIxODg5MCwiZXhwIjoxNjE1MjIwMDkwfQ.27p4SHs8o4dxBl-C0JmYbujPFTRiocPqU5swIZ7SKIg
 
 ### getAllImages
 GET http://localhost:3003/images/all
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNTEzODQyNiwiZXhwIjoxNjE1MTM5NjI2fQ.gLXhYgD3tI2j8i_RhLwoHa8JLSTtEsIf0GPeeUXCC7A
-
-### addTag
-POST http://localhost:3003/images/tag?newTag=férias&newTag=bicicleta&newTag=família
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDUzMDUyNiwiZXhwIjoxNjE0NTMxNzI2fQ.l7qSgG1MJ2o5IG7kCOAYGRr4z7LdD2JkGSVRhbnyPco
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTIzNTgzMSwiZXhwIjoxNjE1MjM3MDMxfQ.x0pjjjg0yYMFwv29P9amEVuBvIOYblZDnQy1pizJqBI
 
 ### delImageById
-DELETE http://localhost:3003/images/del/db7d302e-84e2-4308-a5dc-a20ab60e0f77
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmYzU3N2JjLWM1YzctNGU3Ni1iNzQ3LWE5ZDE0NjQxNjE5NyIsImlhdCI6MTYxNDE5MzE1MSwiZXhwIjoxNjE0MTk0MzUxfQ.nhmjymvyAUOM8qopZUrAX8MqCtOH6fj1beJylTL_ys8
+DELETE http://localhost:3003/images/del/5a4fa913-be4e-4ab6-9aa1-6f3067b6272e
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTMxOTg2OCwiZXhwIjoxNjE1MzIxMDY4fQ.eCZNY5unhzF5fnUVR1xwrVLIPDJf3lz5vdycXCwWkAY
 
 ### postCollection
 POST http://localhost:3003/collections/post
@@ -65,8 +61,8 @@ GET http://localhost:3003/collections/get/2
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNDk2NzQxMSwiZXhwIjoxNjE0OTY4NjExfQ.LIJqVJloa0H5MrewdANUQ5Bhgcbhb9sAGlsJ5A5GjKwgit
 
 ### delCollectionById
-DELETE http://localhost:3003/collections/del/ead72a32-e4e6-4b31-8adc-e4df2e53eeb0
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4MDUyYjlhLTBlMTQtNGZhOC1hY2VmLThmZGJmZWYwMDc1ZiIsImlhdCI6MTYxNTE0MjM4MywiZXhwIjoxNjE1MTQzNTgzfQ.vSU8N6bCz84cPUuY9ZPg9hHTmUTGge0P68sYwbxj4nA
+DELETE http://localhost:3003/collections/del/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTMxOTg2OCwiZXhwIjoxNjE1MzIxMDY4fQ.eCZNY5unhzF5fnUVR1xwrVLIPDJf3lz5vdycXCwWkAY
 
 ### addToCollection
 POST http://localhost:3003/images/collection/1919d3e4-ca95-460d-8c53-dc79f0c6dc5f
@@ -79,3 +75,7 @@ DELETE http://localhost:3003/images/collection/1919d3e4-ca95-460d-8c53-dc79f0c6d
     ?collection=2
     &collection=3
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTE0NTg2NiwiZXhwIjoxNjE1MTQ3MDY2fQ.LBYHqISZWfHw7i_vwLaDUw1wZt_8OFTPR2SOxz7uNag
+
+### getImagesByTagId
+GET http://localhost:3003/images/tag/36
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMGUxYjQ0LThjNGUtNDg1OC04NGFhLTVmN2I5OGVhMmJjMyIsImlhdCI6MTYxNTM5MTg2MSwiZXhwIjoxNjE1MzkzMDYxfQ.wURiWWrqH0Q5ajm_SYrkNwHirzG7wvDP1IxoDlmfiTs
