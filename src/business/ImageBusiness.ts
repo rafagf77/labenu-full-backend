@@ -53,7 +53,11 @@ export class ImageBusiness {
          
          let tags = []
          for (let i=0; i<resultDB[1].length;i++) {
-            tags.push(resultDB[1][i].name)
+            tags.push({
+               id: resultDB[1][i].id,
+               name: resultDB[1][i].name
+               
+            })
          }
 
          let collections = []
@@ -97,9 +101,14 @@ export class ImageBusiness {
             let sameName = false;
             for (let j = 0; j < i; j++) {
                if (finalResult[j] && imageData[i].id === finalResult[j].id) {
-                  finalResult[j].tags.push(
-                     imageData[i].tag
-                     )
+                  finalResult[j].tags.push({
+                     id: imageData[i].tag_id,
+                     tag: imageData[i].tag
+                     })
+                  finalResult[j].collections.push({
+                     id: imageData[i].collection_id,
+                     title: imageData[i].title
+                     })
                      sameName = true;
                      break;
                }
@@ -110,11 +119,15 @@ export class ImageBusiness {
                      subtitle: imageData[i].subtitle,
                      author: imageData[i].author,
                      date: imageData[i].date,
-                     tags: [
-                        imageData[i].tag
-                     ],
+                     tags: [{
+                        id: imageData[i].tag_id,
+                        tag: imageData[i].tag
+                     }],
                      file: imageData[i].file,
-                     collection: imageData[i].collection,
+                     collections: [{
+                        id: imageData[i].collection_id,
+                        title: imageData[i].title
+                     }],
                      nickname: imageData[i].nickname
                })
             }
@@ -126,18 +139,54 @@ export class ImageBusiness {
       }
    }
 
-
-   public async postTag(
-      newTag: string[],
-      token: string
+   public async getImagesByTagId(
+      token: string,
+      id: string
    ) {
       try {
          this.tokenGenerator.verify(token);
          
-         await this.imageDatabase.addTag(
-            newTag
-         );
-         return { message: "Tags added" };
+         const imageData = await this.imageDatabase.getImagesByTagId(id) as any
+
+         let finalResult = [];
+
+         for (let i = 0; i < imageData.length; i++) {
+            let sameName = false;
+            for (let j = 0; j < i; j++) {
+               if (finalResult[j] && imageData[i].id === finalResult[j].id) {
+                  finalResult[j].tags.push({
+                     id: imageData[i].tag_id,
+                     tag: imageData[i].tag
+                     })
+                  finalResult[j].collections.push({
+                     id: imageData[i].collection_id,
+                     title: imageData[i].title
+                     })
+                     sameName = true;
+                     break;
+               }
+            }
+            if (!sameName) {
+               finalResult.push({
+                     id: imageData[i].id,
+                     subtitle: imageData[i].subtitle,
+                     author: imageData[i].author,
+                     date: imageData[i].date,
+                     tags: [{
+                        id: imageData[i].tag_id,
+                        tag: imageData[i].tag
+                     }],
+                     file: imageData[i].file,
+                     collections: [{
+                        id: imageData[i].collection_id,
+                        title: imageData[i].title
+                     }],
+                     nickname: imageData[i].nickname
+               })
+            }
+         }
+         const result = finalResult
+         return { result };
       } catch (error) {
          throw new CustomError(error.statusCode, error.message)
       }

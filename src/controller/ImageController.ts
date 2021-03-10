@@ -52,11 +52,11 @@ export class ImageController {
       }
    }
 
-   public async postTag(req: Request, res: Response) {
+   public async getImagesByTagId(req: Request, res: Response) {
       try {
-         const { newTag } = req.query as any
          const token: string = req.headers.authorization as string
-         const result = await imageBusiness.postTag(newTag, token);
+         const { id } = req.params
+         const result = await imageBusiness.getImagesByTagId(token, id);
          res.status(200).send(result);
       } catch (error) {
          const { statusCode, message } = error
