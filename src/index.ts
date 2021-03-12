@@ -8,7 +8,7 @@ const app = express();
 var cors = require('cors')
 
 app.use(express.json());
-app.use(cors({origin:'http://localhost:3000'}))
+app.use(cors({origin: true}))
 
 app.use("/users", userRouter);
 app.use("/images", imageRouter);
