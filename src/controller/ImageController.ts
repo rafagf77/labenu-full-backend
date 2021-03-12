@@ -3,6 +3,7 @@ import { IdGenerator } from "../services/idGenerator";
 import { ImageBusiness } from "../business/ImageBusiness";
 import { ImageDatabase } from "../data/ImageDatabase";
 import { TokenGenerator } from "../services/tokenGenerator";
+import BaseDataBase from "../data/BaseDatabase";
 
 const imageBusiness =
  new ImageBusiness(new IdGenerator(),
@@ -101,7 +102,6 @@ export class ImageController {
          res.status(statusCode || 400).send({ message });
       }
    }
-
 
 }
 
