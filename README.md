@@ -7,7 +7,10 @@ https://github.com/rafagf77/labenu-full-frontend
 Escolha uma das opções
 - No terminal execute o comando `npm run start`
 - Faça o deploy da aplicação
-- Utilize a aplicação conforme documentação abaixo (Doc do Postman)
+- Utilize a aplicação conforme documentação abaixo
+
+https://documenter.getpostman.com/view/13242914/Tz5qZwyk
+
 
 ## Link do Deploy
 https://api-instalab.herokuapp.com/
