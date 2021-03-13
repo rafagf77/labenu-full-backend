@@ -7,8 +7,7 @@ https://github.com/rafagf77/labenu-full-frontend
 Escolha uma das opções
 - No terminal execute o comando `npm run start`
 - Faça o deploy da aplicação
-- Utilize a aplicação conforme documentação abaixo
-Doc do Postman
+- Utilize a aplicação conforme documentação abaixo (Doc do Postman)
 
 ## Link do Deploy
 https://api-instalab.herokuapp.com/
@@ -19,12 +18,13 @@ https://api-instalab.herokuapp.com/
 - Busca de imagem por ID
 - Busca de lista de imagens de todos usuários
 - Remoção de imagem por ID
-- Criação de Álbum
+- Criação de álbum
 - Busca de lista de álbuns do usuário logado
 - Busca de álbum por ID
-- 
-
-## O que não funciona
+- Remoção de álbum
+- Adição de imagem em álbum
+- Remoção de imagem de álbum
+- Busca de imagens pela etiqueta
 
 ## O que falta implementar
 - Busca de usuários
