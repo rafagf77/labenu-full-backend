@@ -14,6 +14,15 @@ Doc do Postman
 https://api-instalab.herokuapp.com/
 
 ## O que funciona
+- Autenticação (enpoints login e signup)
+- Criação de imagem
+- Busca de imagem por ID
+- Busca de lista de imagens de todos usuários
+- Remoção de imagem por ID
+- Criação de Álbum
+- Busca de lista de álbuns do usuário logado
+- Busca de álbum por ID
+- 
 
 ## O que não funciona
 
