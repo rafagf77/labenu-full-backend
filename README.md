@@ -30,5 +30,5 @@ https://api-instalab.herokuapp.com/
 - Busca de usuários
 - Perfil de usuários
 - Seguir e ser seguido
-- Feed apenas com imagens de pessoas seguidas
+- Busca apenas com imagens de pessoas seguidas
 - Chat
